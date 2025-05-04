@@ -1,5 +1,4 @@
 import random as rnd
-import math
 
 #1 funct
 def random_list(n):
@@ -43,7 +42,7 @@ def to_string(lst):
 #Om A är innan B returnera sant
 #Annars falskt 
 def contains(lst, a, b):
-    for i in range(len(lst)):
+    for i in range(len(lst) - 1):
         value = lst[i]
         if value == a:
             if lst[i + 1] == b:
@@ -61,11 +60,14 @@ def has_duplicates(lst):
 
 #7 funct
 def find_closest(lst, n):
-    close = 0
-    new_close = 0
+    closest = lst[0]
     for i in range(len(lst)):
         value = lst[i]
-        close = n - value
+        old_diff = abs(closest - n)
+        new_diff = abs(value - n)
+        if new_diff < old_diff:
+            closest = value
+    return closest
         
             
 
@@ -84,6 +86,8 @@ print(f'The odd numbers from the list: {only_odd(the_list)}')
 #4
 print(to_string(the_list))
 
+print('\n', '-' * 15)
+
 #5
 contains_list = []
 print('\nNew list!')
@@ -99,10 +103,12 @@ print(f'Does {a} and {b} come in sequence? {contains(contains_list, a, b)}')
 #6
 print(f'Does this list contain any duplicates? {has_duplicates(contains_list)}')
 
+print('\n','-'*15)
+
 #7 
 closest_list = [10, 20, 30, 40]
-z = 23
-print(find_closest(closest_list, z))
+z = int(input('\nGive me a number between 1 and 50: '))
+print(f'{z} is closest to {find_closest(closest_list, z)} in this list:\n{closest_list}')
 
 
 
